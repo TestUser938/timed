@@ -11,6 +11,10 @@ size = Vector2(20, 20)
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="Curve" id="Curve_fpul8"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [node name="Player" type="CharacterBody2D" unique_id=1949817328]
 script = ExtResource("1_2gpuf")
 
@@ -39,3 +43,14 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "0"
 horizontal_alignment = 1
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=208235921]
+amount = 12
+emission_shape = 3
+emission_rect_extents = Vector2(7, 7)
+spread = 180.0
+gravity = Vector2(0, 0)
+orbit_velocity_max = 1.0
+scale_amount_min = 0.0
+scale_amount_max = 10.0
+scale_amount_curve = SubResource("Curve_fpul8")
