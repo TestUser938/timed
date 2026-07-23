@@ -1,10 +1,37 @@
 [gd_scene format=3 uid="uid://b8akxlpvaodsj"]
 
-[ext_resource type="PackedScene" uid="uid://cdhmgybqlbek8" path="res://level/level_0.tscn" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://bo8k4bqljxy1n" path="res://world/hud.tscn" id="1_1bvp3"]
 [ext_resource type="Script" uid="uid://dw5cb3un7y286" path="res://camera.gd" id="1_lquwl"]
 [ext_resource type="Script" uid="uid://ddexae8bc5fc5" path="res://world/world.gd" id="1_mmdvd"]
 [ext_resource type="PackedScene" uid="uid://b6mlhtlaf7fj5" path="res://world/player.tscn" id="2_h2yge"]
+[ext_resource type="Shader" uid="uid://dad0tgv1gi1au" path="res://world/space.gdshader" id="3_sc4t8"]
+[ext_resource type="Texture2D" uid="uid://egxhnac1s5n1" path="res://assets/quad.png" id="4_ai45w"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jfngs"]
+shader = ExtResource("3_sc4t8")
+shader_parameter/density = 150.0
+shader_parameter/layer_parascale = 2
+shader_parameter/speedx = 0.2
+shader_parameter/speedy = 0.0
+shader_parameter/star_horizontal_wave = 0.3
+shader_parameter/star_size = 3.0
+shader_parameter/twinkle_effect = 0.6
+shader_parameter/twinkle_speed = 0.3
+shader_parameter/fbm_strength = 0.12
+shader_parameter/fbm_mix = 0.07
+shader_parameter/fbm_freq = 4.0
+shader_parameter/fbm_amp = 1.5
+shader_parameter/fbm_speed = 5.0
+shader_parameter/warp_scale = 2.0
+shader_parameter/cloud_freq = 40.0
+shader_parameter/cloud_amp = 0.02
+shader_parameter/cloud_speed = 5.0
+shader_parameter/cloud_color_ci1 = 0.75
+shader_parameter/cloud_color_ci2 = 0.45
+shader_parameter/cloud_color_ci3 = 0.9
+shader_parameter/cloud_color_shiftx = 0.0
+shader_parameter/cloud_color_shifty = 0.0
+shader_parameter/background_color = Color(0.02, 0.04, 0.12, 1)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_p4yf2"]
 
@@ -17,22 +44,29 @@ reflected_light_source = 2
 ssao_enabled = true
 glow_enabled = true
 
-[node name="World" type="Node2D" unique_id=810114619]
+[sub_resource type="QuadMesh" id="QuadMesh_fn3g3"]
+size = Vector2(29.17, 35.225)
+
+[node name="World" type="Node2D" unique_id=810114619 node_paths=PackedStringArray("player")]
 script = ExtResource("1_mmdvd")
+player = NodePath("Player")
 
 [node name="Camera" type="Camera2D" parent="." unique_id=122045151 node_paths=PackedStringArray("target")]
-position = Vector2(576, 324)
 script = ExtResource("1_lquwl")
 target = NodePath("../Player")
-target_offset = Vector2(0, 350)
+target_offset = Vector2(0, 50)
+
+[node name="Sky" type="Sprite2D" parent="Camera" unique_id=1055372993]
+material = SubResource("ShaderMaterial_jfngs")
+texture = ExtResource("4_ai45w")
 
 [node name="HUD" parent="." unique_id=1355407068 instance=ExtResource("1_1bvp3")]
 
 [node name="Player" parent="." unique_id=772586133 instance=ExtResource("2_h2yge")]
-position = Vector2(576, 324)
-
-[node name="Level" parent="." unique_id=851499234 instance=ExtResource("1_0xm2m")]
-position = Vector2(576, 324)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1556570371]
 environment = SubResource("Environment_jfngs")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=1236689101]
+visible = false
+mesh = SubResource("QuadMesh_fn3g3")

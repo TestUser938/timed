@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://t3rqcqp1gvi2" path="res://world/player.gd" id="1_2gpuf"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_fpul8"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cu7rv"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_2gpuf"]
 size = Vector2(20, 20)
@@ -19,7 +19,7 @@ point_count = 2
 script = ExtResource("1_2gpuf")
 
 [node name="Collider" type="CollisionShape2D" parent="." unique_id=820912556]
-shape = SubResource("CircleShape2D_fpul8")
+shape = SubResource("RectangleShape2D_cu7rv")
 
 [node name="Mesh" type="MeshInstance2D" parent="." unique_id=1244111743]
 mesh = SubResource("QuadMesh_2gpuf")
