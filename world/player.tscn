@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://b6mlhtlaf7fj5"]
 
 [ext_resource type="Script" uid="uid://t3rqcqp1gvi2" path="res://world/player.gd" id="1_2gpuf"]
+[ext_resource type="Texture2D" uid="uid://chwr8r3v0meny" path="res://assets/ring.png" id="2_mmw4h"]
+[ext_resource type="Texture2D" uid="uid://dprvb2ymhvjd5" path="res://assets/4-pointed-star.png" id="3_4nodc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cu7rv"]
 
@@ -13,6 +15,18 @@ point_count = 2
 
 [sub_resource type="Curve" id="Curve_fpul8"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_jfngs"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Curve" id="Curve_2gpuf"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_p4qmb"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [node name="Player" type="CharacterBody2D" unique_id=1949817328]
@@ -28,6 +42,7 @@ mesh = SubResource("QuadMesh_2gpuf")
 points = PackedVector2Array(0, 0, 0, 0)
 closed = true
 width_curve = SubResource("Curve_jfngs")
+default_color = Color(0, 1, 0, 1)
 
 [node name="debug" type="Label" parent="." unique_id=493537786]
 anchors_preset = 7
@@ -44,13 +59,65 @@ grow_vertical = 0
 text = "0"
 horizontal_alignment = 1
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=208235921]
-amount = 12
+[node name="Particles" type="Node2D" parent="." unique_id=1146949666]
+
+[node name="Trail" type="CPUParticles2D" parent="Particles" unique_id=208235921]
+amount = 16
 emission_shape = 3
 emission_rect_extents = Vector2(7, 7)
 spread = 180.0
 gravity = Vector2(0, 0)
-orbit_velocity_max = 1.0
 scale_amount_min = 0.0
 scale_amount_max = 10.0
 scale_amount_curve = SubResource("Curve_fpul8")
+
+[node name="Spawn" type="CPUParticles2D" parent="Particles" unique_id=2107373281]
+emitting = false
+amount = 12
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+local_coords = true
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 300.0
+orbit_velocity_min = -1.0
+orbit_velocity_max = -1.0
+scale_amount_min = 0.0
+scale_amount_max = 20.0
+scale_amount_curve = SubResource("Curve_fpul8")
+
+[node name="Burst" type="CPUParticles2D" parent="Particles" unique_id=108663415]
+emitting = false
+amount = 5
+texture = ExtResource("2_mmw4h")
+lifetime = 0.25
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+orbit_velocity_max = 1.0
+scale_amount_min = 0.0
+scale_amount_max = 0.75
+scale_amount_curve = SubResource("Curve_fpul8")
+color_ramp = SubResource("Gradient_jfngs")
+
+[node name="Spark" type="CPUParticles2D" parent="Particles" unique_id=390575986]
+emitting = false
+amount = 5
+texture = ExtResource("3_4nodc")
+lifetime = 0.25
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+orbit_velocity_max = 1.0
+scale_amount_min = 0.0
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_fpul8")
+split_scale = true
+scale_curve_x = SubResource("Curve_2gpuf")
+scale_curve_y = SubResource("Curve_p4qmb")

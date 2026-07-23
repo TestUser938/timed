@@ -54,7 +54,7 @@ player = NodePath("Player")
 [node name="Camera" type="Camera2D" parent="." unique_id=122045151 node_paths=PackedStringArray("target")]
 script = ExtResource("1_lquwl")
 target = NodePath("../Player")
-target_offset = Vector2(0, 50)
+target_offset = Vector2(0, 25)
 
 [node name="Sky" type="Sprite2D" parent="Camera" unique_id=1055372993]
 material = SubResource("ShaderMaterial_jfngs")

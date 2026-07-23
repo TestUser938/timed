@@ -5,6 +5,7 @@
 [node name="HUD" type="CanvasLayer" unique_id=291672944]
 
 [node name="Control" type="Control" parent="." unique_id=1355407068]
+modulate = Color(1, 1, 1, 0.49019608)
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 15

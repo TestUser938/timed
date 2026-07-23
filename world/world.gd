@@ -1,7 +1,8 @@
 extends Node2D
 
 @export var player: CharacterBody2D
-
+var timer = 0
+var actions = 0
 
 var levels = [
 	preload("res://level/level_0.tscn"),
@@ -17,15 +18,18 @@ func _ready() -> void:
 	load_level(0)
 
 func load_level(index: int):
-	if not current_level:
-		var lvl = levels[0].instantiate()
-		add_child(lvl)
+	if current_level:
+		current_level.queue_free()
+		current_level = null
 		
-		current_objects.clear()
-		current_objects = lvl["objects"]
-		
-		current_level = lvl
-		current_tilemap = lvl["tilemap"]
+	var lvl = levels[0].instantiate()
+	add_child(lvl)
+	
+	current_objects.clear()
+	current_objects = lvl["objects"]
+	
+	current_level = lvl
+	current_tilemap = lvl["tilemap"]
 
 
 # TODO: check if entities in floaty
@@ -39,10 +43,10 @@ func _process(delta: float) -> void:
 					obj.apply_force(Vector2(0, -400))
 		
 		var player_floating = get_tile_property(player.global_position, "Float")
-		if player_floating:
-			player["states"]["is_submerged"] = true
-		else:
-			player["states"]["is_submerged"] = false
+		player["states"]["is_submerged"] = player_floating
+		
+		var hazardous = get_tile_property(player.global_position, "Hazard")
+		if hazardous: player.die()
 	
 
 
