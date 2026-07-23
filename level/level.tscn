@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cdhmgybqlbek8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jfngs"]
+size = Vector2(1000, 20)
+
+[sub_resource type="QuadMesh" id="QuadMesh_fpul8"]
+size = Vector2(1000, 20)
+
+[node name="Level" type="Node2D" unique_id=851499234]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1008528111]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=2145726810]
+position = Vector2(0, 300)
+shape = SubResource("RectangleShape2D_jfngs")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D" unique_id=1600405669]
+position = Vector2(0, 300)
+mesh = SubResource("QuadMesh_fpul8")

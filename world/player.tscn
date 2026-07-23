@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://b6mlhtlaf7fj5"]
+
+[ext_resource type="Script" uid="uid://t3rqcqp1gvi2" path="res://world/player.gd" id="1_2gpuf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fpul8"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_2gpuf"]
+size = Vector2(20, 20)
+
+[sub_resource type="Curve" id="Curve_jfngs"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Player" type="CharacterBody2D" unique_id=1949817328]
+script = ExtResource("1_2gpuf")
+
+[node name="Collider" type="CollisionShape2D" parent="." unique_id=820912556]
+shape = SubResource("CircleShape2D_fpul8")
+
+[node name="Mesh" type="MeshInstance2D" parent="." unique_id=1244111743]
+mesh = SubResource("QuadMesh_2gpuf")
+
+[node name="Direction" type="Line2D" parent="." unique_id=425074450]
+points = PackedVector2Array(0, 0, 0, 0)
+closed = true
+width_curve = SubResource("Curve_jfngs")
+
+[node name="debug" type="Label" parent="." unique_id=493537786]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -21.0
+offset_top = -33.0
+offset_right = 22.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "0"
+horizontal_alignment = 1

@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://bo8k4bqljxy1n"]
+
+[ext_resource type="Script" uid="uid://omh70rpth1jr" path="res://world/hud.gd" id="1_oerii"]
+
+[node name="HUD" type="CanvasLayer" unique_id=291672944]
+
+[node name="Control" type="Control" parent="." unique_id=1355407068]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oerii")
+
+[node name="Actions" type="VBoxContainer" parent="Control" unique_id=1642380241]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -69.0
+offset_right = -11.0
+offset_bottom = 234.0
+grow_horizontal = 0
+
+[node name="Number" type="Label" parent="Control/Actions" unique_id=189635626]
+layout_mode = 2
+theme_override_font_sizes/font_size = 91
+text = "0"
+horizontal_alignment = 1
+
+[node name="Title" type="Label" parent="Control/Actions" unique_id=674493232]
+layout_mode = 2
+text = "Actions"
+horizontal_alignment = 1
+
+[node name="Timer" type="VBoxContainer" parent="Control" unique_id=1849952759]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -29.0
+offset_right = 29.0
+offset_bottom = 234.0
+grow_horizontal = 2
+
+[node name="Number" type="Label" parent="Control/Timer" unique_id=90803714]
+layout_mode = 2
+theme_override_font_sizes/font_size = 91
+text = "00:00"
+horizontal_alignment = 1
+
+[node name="Title" type="Label" parent="Control/Timer" unique_id=1246980110]
+layout_mode = 2
+text = "Timer"
+horizontal_alignment = 1
