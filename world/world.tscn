@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://b8akxlpvaodsj"]
 
-[ext_resource type="PackedScene" uid="uid://cdhmgybqlbek8" path="res://level/level.tscn" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://cdhmgybqlbek8" path="res://level/level_0.tscn" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://bo8k4bqljxy1n" path="res://world/hud.tscn" id="1_1bvp3"]
 [ext_resource type="Script" uid="uid://dw5cb3un7y286" path="res://camera.gd" id="1_lquwl"]
+[ext_resource type="Script" uid="uid://ddexae8bc5fc5" path="res://world/world.gd" id="1_mmdvd"]
 [ext_resource type="PackedScene" uid="uid://b6mlhtlaf7fj5" path="res://world/player.tscn" id="2_h2yge"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_p4yf2"]
@@ -17,6 +18,7 @@ ssao_enabled = true
 glow_enabled = true
 
 [node name="World" type="Node2D" unique_id=810114619]
+script = ExtResource("1_mmdvd")
 
 [node name="Camera" type="Camera2D" parent="." unique_id=122045151 node_paths=PackedStringArray("target")]
 position = Vector2(576, 324)
