@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" format=3 uid="uid://c5tscayrn0hfe"]
 
-[ext_resource type="Texture2D" uid="uid://cx1waddicw14g" path="res://world/sheet_0.png" id="1_dhj3a"]
+[ext_resource type="Texture2D" uid="uid://7fndyohl80tk" path="res://world/sheet_0.png" id="1_dhj3a"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_dhj3a"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -114,6 +114,15 @@ texture = ExtResource("1_dhj3a")
 6:0/0 = 0
 6:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_soik3")
 6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, -8, 8, -8, -8)
+5:1/0 = 0
+5:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:1/0/custom_data_1 = true
+6:1/0 = 0
+6:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:1/0/custom_data_1 = true
+7:1/0 = 0
+7:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:1/0/custom_data_1 = true
 
 [resource]
 occlusion_layer_0/light_mask = 1

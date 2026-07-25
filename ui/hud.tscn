@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bo8k4bqljxy1n"]
 
+[ext_resource type="Script" uid="uid://dpkb15qabmsdw" path="res://ui/ui_sounds.gd" id="1_ff8ar"]
 [ext_resource type="Script" uid="uid://omh70rpth1jr" path="res://ui/hud.gd" id="1_oerii"]
 [ext_resource type="Script" uid="uid://dwqk8bl33hsph" path="res://ui/main_menu.gd" id="2_p1exe"]
 [ext_resource type="Theme" uid="uid://dyrulnehirjw0" path="res://ui/main_theme.tres" id="2_spcu4"]
@@ -51,6 +52,7 @@ Button/styles/normal = SubResource("StyleBoxFlat_li3ga")
 Button/styles/pressed = SubResource("StyleBoxFlat_p1exe")
 
 [node name="UI" type="CanvasLayer" unique_id=291672944]
+script = ExtResource("1_ff8ar")
 
 [node name="HUD" type="Control" parent="." unique_id=1355407068]
 modulate = Color(1, 1, 1, 0.49019608)
@@ -160,7 +162,7 @@ grow_vertical = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="Start" type="Button" parent="Menu/Buttons" unique_id=1659116572]
+[node name="Start" type="Button" parent="Menu/Buttons" unique_id=1659116572 groups=["button"]]
 layout_mode = 2
 theme = SubResource("Theme_8ao2q")
 text = "Start"
@@ -169,7 +171,7 @@ alignment = 0
 icon_alignment = 2
 expand_icon = true
 
-[node name="Options" type="Button" parent="Menu/Buttons" unique_id=289419276]
+[node name="Options" type="Button" parent="Menu/Buttons" unique_id=289419276 groups=["button"]]
 layout_mode = 2
 theme = SubResource("Theme_8ao2q")
 text = "Options"
@@ -185,12 +187,12 @@ layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
 offset_left = 306.0
-offset_top = 329.0
+offset_top = 334.0
 offset_right = 603.0
 grow_vertical = 2
 theme_override_constants/separation = 10
 
-[node name="BurstKey" type="Button" parent="Menu/Options" unique_id=136143293]
+[node name="BurstKey" type="Button" parent="Menu/Options" unique_id=136143293 groups=["button"]]
 visible = false
 layout_mode = 2
 theme = SubResource("Theme_8ao2q")
@@ -228,6 +230,7 @@ vertical_alignment = 1
 [node name="Volume" type="HSlider" parent="Menu/Options" unique_id=129201602]
 layout_mode = 2
 theme = ExtResource("2_spcu4")
+value = 100.0
 
 [node name="Label" type="Label" parent="Menu/Options/Volume" unique_id=1661353921]
 layout_mode = 1
@@ -238,7 +241,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_spcu4")
 text = "volume"
-horizontal_alignment = 2
 
 [node name="Title" type="Label" parent="Menu" unique_id=925615932]
 layout_mode = 1
@@ -270,7 +272,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_ve3w8")
 theme_override_font_sizes/font_size = 31
-text = "no records"
+text = "no record"
 horizontal_alignment = 2
 
 [node name="Pause" type="Control" parent="." unique_id=350948595]
@@ -304,7 +306,7 @@ grow_vertical = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="Resume" type="Button" parent="Pause/Buttons" unique_id=133895285]
+[node name="Resume" type="Button" parent="Pause/Buttons" unique_id=133895285 groups=["button"]]
 layout_mode = 2
 theme = SubResource("Theme_8ao2q")
 text = "Resume"
@@ -313,7 +315,7 @@ alignment = 0
 icon_alignment = 2
 expand_icon = true
 
-[node name="Reset" type="Button" parent="Pause/Buttons" unique_id=1618440637]
+[node name="Reset" type="Button" parent="Pause/Buttons" unique_id=1618440637 groups=["button"]]
 layout_mode = 2
 theme = SubResource("Theme_8ao2q")
 text = "Reset"
@@ -322,7 +324,7 @@ alignment = 0
 icon_alignment = 2
 expand_icon = true
 
-[node name="Exit" type="Button" parent="Pause/Buttons" unique_id=1226226284]
+[node name="Exit" type="Button" parent="Pause/Buttons" unique_id=1226226284 groups=["button"]]
 layout_mode = 2
 theme = SubResource("Theme_8ao2q")
 text = "Exit"
@@ -359,6 +361,7 @@ text = "Best: 0.0s"
 horizontal_alignment = 2
 
 [node name="Type" type="Label" parent="Pause/Stats" unique_id=1059291993]
+visible = false
 self_modulate = Color(1, 1, 1, 0.37254903)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_ve3w8")
@@ -366,4 +369,6 @@ theme_override_font_sizes/font_size = 31
 text = "CLEAN"
 horizontal_alignment = 2
 
+[connection signal="visibility_changed" from="Menu" to="Menu" method="_on_visibility_changed"]
 [connection signal="toggled" from="Menu/Options/BurstKey" to="Menu" method="_on_burst_key_toggled"]
+[connection signal="value_changed" from="Menu/Options/Volume" to="Menu" method="_on_volume_value_changed"]

@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://egxhnac1s5n1" path="res://assets/textures/quad.png" id="4_ai45w"]
 [ext_resource type="Texture2D" uid="uid://dsk40t5f50klq" path="res://assets/textures/reset.png" id="5_sc4t8"]
 [ext_resource type="Theme" uid="uid://dyrulnehirjw0" path="res://ui/main_theme.tres" id="6_ai45w"]
+[ext_resource type="AudioStream" uid="uid://dxesyqd0aipwv" path="res://assets/sounds/bgm_0.mp3" id="9_4papg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jfngs"]
 shader = ExtResource("3_sc4t8")
@@ -33,7 +34,7 @@ shader_parameter/cloud_color_ci2 = 0.45
 shader_parameter/cloud_color_ci3 = 0.9
 shader_parameter/cloud_color_shiftx = 0.0
 shader_parameter/cloud_color_shifty = 0.0
-shader_parameter/background_color = Color(0.02, 0.04, 0.12, 1)
+shader_parameter/background_color = Color(0.1060834, 0.1597575, 0.34613156, 1)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_p4yf2"]
 
@@ -81,6 +82,7 @@ texture = ExtResource("5_sc4t8")
 
 [node name="LevelName" type="Label" parent="Player" unique_id=741342950]
 modulate = Color(1, 1, 1, 0)
+z_index = 419
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -88,7 +90,7 @@ offset_top = -65.0
 offset_right = 282.0
 grow_vertical = 0
 theme = ExtResource("6_ai45w")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 48
 text = "|movement"
 vertical_alignment = 2
 
@@ -100,4 +102,7 @@ visible = false
 mesh = SubResource("QuadMesh_fn3g3")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1013929327]
-color = Color(0.70796657, 0.7079665, 0.7079665, 1)
+color = Color(0.4817894, 0.48178953, 0.4817894, 1)
+
+[node name="bgm" type="AudioStreamPlayer2D" parent="." unique_id=1826084161]
+stream = ExtResource("9_4papg")

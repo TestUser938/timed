@@ -11,6 +11,11 @@ var levels = [
 	preload("res://level/level_0.tscn"),
 	preload("res://level/level_1.tscn"),
 	preload("res://level/level_2.tscn"),
+	preload("res://level/level_3.tscn"),
+	preload("res://level/level_4.tscn"),
+	preload("res://level/level_5.tscn"),
+	preload("res://level/level_6.tscn"),
+	preload("res://level/level_16.tscn"),
 ]
 
 var current_data = {
@@ -57,12 +62,11 @@ func _ready() -> void:
 	EventBus.reload.connect(reload)
 	EventBus.level.connect(load_level)
 
-func load_level(index: int):
+func load_level(index: int, bonus = true):
 	
 	if current_data["level"]:
 		current_data["level"].queue_free()
 		current_data["level"] = null
-	
 	
 	var lvl = levels[index].instantiate()
 	add_child(lvl)
@@ -91,8 +95,8 @@ func load_level(index: int):
 #		if i != "level":
 #			i = lvl[i]
 
-	var bonus_time = clamp(Globals.timer/10.0, 0, 10.0)
-	var bonus_actions = clamp(actions, 0, 2)
+	var bonus_time = clamp(Globals.timer/10.0, 0, 10.0) if bonus else 0
+	var bonus_actions = clamp(actions, 0, 2) if bonus else 0
 	
 	timer = current_data["base_time"] + bonus_time
 	actions = current_data["base_actions"] + bonus_actions
@@ -135,6 +139,16 @@ func reload(clean = false):
 
 var level_buffer = false
 func _process(delta: float) -> void:
+	var bgm = $bgm
+	if Globals.started:
+		if !bgm.playing: 
+			bgm.play()
+			bgm.volume_db = Globals.volume
+	else:
+		if bgm.playing: 
+			bgm.stop()
+	
+	
 	if current_data["tilemap"]: 
 		if current_data["objects"].size() > 0:
 			for obj: RigidBody2D in current_data["objects"]:
@@ -146,13 +160,17 @@ func _process(delta: float) -> void:
 		player["states"]["is_submerged"] = player_floating
 		
 		var hazardous = get_tile_property(current_data["tilemap"]["object"], player.global_position, "Hazard")
-		if hazardous: reload()
+		if hazardous and player.iframes <= 0: 
+			reload()
 		
 		var next = get_tile_property(current_data["tilemap"]["object"], player.global_position, "Next")
 		if next and not level_buffer: 
-			enter_level((level_index + 1) % levels.size())
+			enter_level(level_index + 1)
 			
 func enter_level(index: int):
+	if index >= levels.size(): Datastore.save_time(Globals.current_time)
+	
+	index = (index) % levels.size()
 	print(str(index))
 	level_buffer = true
 	load_level(index)

@@ -19,6 +19,10 @@ func _update_counter(type, value):
 	var counter = counters.get(type)
 	var tween_target = counter.get_parent()
 	
+	if int(value):
+		if type == "action":
+			counter.modulate = Color(1, 0, 0) if int(value) <= 1 else Color(1, 1, 1)
+	
 	counter.text = str(value) # str(int(counters.get(type).text) + 1)
 	tween_target.scale = Vector2(.5, 1.5)
 #	tween_target.rotation_degrees = randf_range(-45, 45)
@@ -51,6 +55,9 @@ func _physics_process(delta: float) -> void:
 	
 	if time_started:
 		Globals.timer -= delta
+		Globals.current_time += delta
+		
+		counters["timer"].modulate = Color(1, 0, 0) if Globals.timer <= 5.0 else Color(1, 1, 1)
 		counters["timer"].text = str(snapped(Globals.timer, 0.1))
 		
 		if Globals.timer <= 0:

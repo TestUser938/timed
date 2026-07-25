@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://t3rqcqp1gvi2" path="res://world/player.gd" id="1_2gpuf"]
 [ext_resource type="Texture2D" uid="uid://chwr8r3v0meny" path="res://assets/textures/ring.png" id="2_mmw4h"]
 [ext_resource type="Texture2D" uid="uid://dprvb2ymhvjd5" path="res://assets/textures/4-pointed-star.png" id="3_4nodc"]
-[ext_resource type="Texture2D" uid="uid://cqt84bp6x8w7i" path="res://assets/textures/glow.png" id="4_4nodc"]
+[ext_resource type="Texture2D" uid="uid://cqt84bp6x8w7i" path="res://assets/textures/light_circle.png" id="4_4nodc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cu7rv"]
 
@@ -132,4 +132,4 @@ scale_curve_y = SubResource("Curve_p4qmb")
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=595702495]
 shadow_enabled = true
 texture = ExtResource("4_4nodc")
-texture_scale = 2.0
+texture_scale = 3.0

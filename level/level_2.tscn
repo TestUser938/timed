@@ -5,6 +5,7 @@
 [ext_resource type="Shader" uid="uid://c6rijn5p3nirh" path="res://assets/misc/squiggle.gdshader" id="3_xj6fv"]
 [ext_resource type="Texture2D" uid="uid://csmdkjlkqje7m" path="res://assets/tutorial/001.png" id="4_dxks8"]
 [ext_resource type="Texture2D" uid="uid://ba7ynhib644c" path="res://assets/tutorial/003.png" id="5_vl510"]
+[ext_resource type="Texture2D" uid="uid://cgp2mdod6akj2" path="res://assets/textures/light_beam.png" id="6_dxks8"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_jfngs"]
 size = Vector2(2, 2)
@@ -61,3 +62,31 @@ material = SubResource("ShaderMaterial_vir0n")
 position = Vector2(-156, 233)
 scale = Vector2(0.3632813, 0.3632813)
 texture = ExtResource("5_vl510")
+
+[node name="Light0" type="PointLight2D" parent="." unique_id=1756904895]
+position = Vector2(-177.5, 270.5)
+scale = Vector2(0.6425781, 0.31835938)
+color = Color(1, 0.74509805, 0, 1)
+shadow_enabled = true
+texture = ExtResource("6_dxks8")
+
+[node name="Light1" type="PointLight2D" parent="." unique_id=1504947956]
+position = Vector2(188, 170.865)
+scale = Vector2(0.26562497, 0.257)
+color = Color(1, 0.74509805, 0, 1)
+shadow_enabled = true
+texture = ExtResource("6_dxks8")
+
+[node name="Light2" type="PointLight2D" parent="." unique_id=1734996187]
+position = Vector2(350, 170.865)
+scale = Vector2(0.26562497, 0.257)
+color = Color(1, 0.74509805, 0, 1)
+shadow_enabled = true
+texture = ExtResource("6_dxks8")
+
+[node name="Light3" type="PointLight2D" parent="." unique_id=1237694367]
+position = Vector2(510, 170.865)
+scale = Vector2(0.26562497, 0.257)
+color = Color(1, 0.74509805, 0, 1)
+shadow_enabled = true
+texture = ExtResource("6_dxks8")

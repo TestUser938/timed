@@ -11,13 +11,14 @@ var sounds = {
 	"select": preload("res://assets/sounds/select.ogg")
 }
 
-func play_sound(type: String = "ping"):
-	if not Globals.started: return
+func play_sound(type: String = "ping", ignore = false):
+	if not Globals.started and not ignore: return
 	
 	var plr = AudioStreamPlayer2D.new()
 	add_child(plr)
 	
 	plr.stream = sounds.get(type)
+	plr.volume_db = Globals.volume
 	plr.play()
 	
 	plr.finished.connect(func(): plr.queue_free())

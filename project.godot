@@ -20,11 +20,16 @@ config/icon="res://icon.svg"
 EventBus="*uid://0k5raadmloif"
 SoundManager="*uid://e3wio4g5hgh0"
 Globals="*uid://datfydwfuwaxn"
+Datastore="*uid://b4drh8ehljb1d"
 
 [display]
 
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+
+[global_group]
+
+button="you can click it yah"
 
 [input]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqt84bp6x8w7i"
-path="res://.godot/imported/glow.png-0164fa6a0a5fe1b0b6666d2c56dbf495.ctex"
+uid="uid://b5gy7wkk4qrox"
+path="res://.godot/imported/gmtk_theme.png-6fbb50d2df81cbea3b4a6a2b25d4be02.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/glow.png"
-dest_files=["res://.godot/imported/glow.png-0164fa6a0a5fe1b0b6666d2c56dbf495.ctex"]
+source_file="res://assets/textures/gmtk_theme.png"
+dest_files=["res://.godot/imported/gmtk_theme.png-6fbb50d2df81cbea3b4a6a2b25d4be02.ctex"]
 
 [params]
 

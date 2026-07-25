@@ -17,6 +17,9 @@ func _input(event: InputEvent) -> void:
 		visible = not visible
 		Globals.started = not Globals.started
 		print(str(Globals.started))
+		
+		stats["time"].text = str("current: ", snapped(Globals.current_time, 0.1), "s")
+		stats["best"].text = str("best: ", snapped(Datastore.load_time(), 0.1), "s")
 
 func _ready() -> void:
 	for i in buttons:
@@ -34,6 +37,6 @@ func _pressed(i):
 	elif i == "exit":
 		visible = false
 		Globals.started = false
-		EventBus.level.emit(0)
+		EventBus.level.emit(0, false)
 		EventBus.reload.emit(true)
 		get_parent().get_node("Menu").visible = true

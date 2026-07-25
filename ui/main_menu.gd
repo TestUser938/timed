@@ -11,6 +11,8 @@ extends Control
 }
 
 @onready var options = $Options
+@onready var best = $BestTime
+
 var changing_key = false
 
 func _ready() -> void:
@@ -18,16 +20,34 @@ func _ready() -> void:
 		var button: Button = buttons.get(i, "start")
 		button.pressed.connect(_pressed.bind(i))
 	
+	update_record()
+	visibility_changed.connect(update_record)
 #	_set_keybind("burst")
+
+
 		
 func _pressed(i):
 	if i == "start":
 		visible = false
 		Globals.started = true
 		EventBus.reload.emit()
+		Globals.current_time = 0.0
 	elif i == "options":
 		options.visible = not options.visible
 
+
+
+func _on_volume_value_changed(value: float) -> void:
+	Globals.volume = linear_to_db(value/100.0)
+	
+
+
+func update_record() -> void:
+	await get_tree().process_frame
+	var best_time = Datastore.load_time()
+	best.text = str("best time: ", snapped(best_time, 0.1), "s") if best_time != null and best_time > 0.0 else "no record"
+	
+	
 """
 func _set_keybind(action):
 	var action_events = InputMap.action_get_events(action)

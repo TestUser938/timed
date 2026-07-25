@@ -21,6 +21,7 @@ var states = {
 @onready var mesh: MeshInstance2D = $Mesh
 @onready var particles: Node2D = $Particles
 
+var iframes = 0.0
 var raw_input = Vector2.ZERO
 var spawn_location
 
@@ -29,6 +30,8 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if not Globals.started: return;
+	
+	iframes -= delta if iframes >= 0.0 else 0.0
 	
 	raw_input = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	inp.set_point_position(1, raw_input.normalized() * 30.0)
@@ -82,6 +85,7 @@ func burst():
 	particles.get_node("Spark").emitting = true
 	
 	SoundManager.play_sound("pong")
+	iframes = 0.5
 	
 	if raw_input.length() > 0:
 		current_speed = (DASH_VELOCITY if is_on_floor() and raw_input.y == 0 else DASH_VELOCITY/4.0)
