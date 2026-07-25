@@ -20,6 +20,8 @@ func _ready() -> void:
 		var button: Button = buttons.get(i, "start")
 		button.pressed.connect(_pressed.bind(i))
 	
+	
+	
 	update_record()
 	visibility_changed.connect(update_record)
 #	_set_keybind("burst")

@@ -15,7 +15,8 @@ var levels = [
 	preload("res://level/level_4.tscn"),
 	preload("res://level/level_5.tscn"),
 	preload("res://level/level_6.tscn"),
-	preload("res://level/level_16.tscn"),
+	preload("res://level/level_7.tscn"),
+	preload("res://level/level_13.tscn"),
 ]
 
 var current_data = {
@@ -168,7 +169,13 @@ func _process(_delta: float) -> void:
 			enter_level(level_index + 1)
 			
 func enter_level(index: int):
-	if index >= levels.size(): Datastore.save_time(Globals.current_time)
+	if index >= levels.size(): 
+		var current_best = Datastore.load_time()
+		if Globals.current_time <= current_best:
+			Datastore.save_time(Globals.current_time)
+		
+		Globals.current_time = 0.0
+		EventBus.open_menu.emit("menu")
 	
 	index = (index) % levels.size()
 	print(str(index))
