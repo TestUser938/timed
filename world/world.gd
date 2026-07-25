@@ -51,7 +51,7 @@ func _input(event: InputEvent) -> void:
 func _ready() -> void:
 	load_level(0)
 	
-	EventBus.action.connect(func(val): 
+	EventBus.action.connect(func(_val): 
 		actions -= 1
 		
 		EventBus.hud.emit("action", actions)
@@ -138,7 +138,7 @@ func reload(clean = false):
 # TODO check if player in hazard
 
 var level_buffer = false
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var bgm = $bgm
 	if Globals.started:
 		if !bgm.playing: 
