@@ -1,0 +1,369 @@
+[gd_scene format=3 uid="uid://bo8k4bqljxy1n"]
+
+[ext_resource type="Script" uid="uid://omh70rpth1jr" path="res://ui/hud.gd" id="1_oerii"]
+[ext_resource type="Script" uid="uid://dwqk8bl33hsph" path="res://ui/main_menu.gd" id="2_p1exe"]
+[ext_resource type="Theme" uid="uid://dyrulnehirjw0" path="res://ui/main_theme.tres" id="2_spcu4"]
+[ext_resource type="FontFile" uid="uid://b8kqyrr3p3fdv" path="res://assets/misc/Consolas-Regular.ttf" id="2_ve3w8"]
+[ext_resource type="Texture2D" uid="uid://m773sbpngee1" path="res://assets/textures/navigation_e.png" id="3_eoaax"]
+[ext_resource type="Texture2D" uid="uid://cui8unirdf1m3" path="res://assets/textures/wrench.png" id="4_p1exe"]
+[ext_resource type="Script" uid="uid://dy205681lijow" path="res://ui/pause.gd" id="6_f8am5"]
+[ext_resource type="Texture2D" uid="uid://dsk40t5f50klq" path="res://assets/textures/reset.png" id="7_0hr0h"]
+[ext_resource type="Texture2D" uid="uid://crt8tcpohq8nu" path="res://assets/textures/exit.png" id="8_ptury"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eoaax"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.05882353, 0.05882353, 0.05882353, 1)
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_li3ga"]
+bg_color = Color(0.06053035, 0.06053035, 0.060530342, 1)
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p1exe"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="Theme" id="Theme_8ao2q"]
+Button/colors/font_hover_color = Color(0, 0, 0, 1)
+Button/colors/icon_hover_color = Color(0, 0, 0, 1)
+Button/font_sizes/font_size = 25
+Button/fonts/font = ExtResource("2_ve3w8")
+Button/styles/hover = SubResource("StyleBoxFlat_eoaax")
+Button/styles/normal = SubResource("StyleBoxFlat_li3ga")
+Button/styles/pressed = SubResource("StyleBoxFlat_p1exe")
+
+[node name="UI" type="CanvasLayer" unique_id=291672944]
+
+[node name="HUD" type="Control" parent="." unique_id=1355407068]
+modulate = Color(1, 1, 1, 0.49019608)
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oerii")
+
+[node name="Actions" type="VBoxContainer" parent="HUD" unique_id=1642380241]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -73.0
+offset_top = 14.0
+offset_right = -11.0
+offset_bottom = 248.0
+grow_horizontal = 0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+
+[node name="Number" type="Label" parent="HUD/Actions" unique_id=189635626]
+layout_mode = 2
+theme = ExtResource("2_spcu4")
+theme_override_font_sizes/font_size = 91
+text = "0"
+horizontal_alignment = 1
+
+[node name="Title" type="Label" parent="HUD/Actions" unique_id=674493232]
+layout_mode = 2
+theme = ExtResource("2_spcu4")
+text = "Actions"
+horizontal_alignment = 1
+
+[node name="Timer" type="VBoxContainer" parent="HUD" unique_id=1849952759]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -125.0
+offset_top = 14.0
+offset_right = 125.0
+offset_bottom = 248.0
+grow_horizontal = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+
+[node name="Number" type="Label" parent="HUD/Timer" unique_id=90803714]
+layout_mode = 2
+theme = ExtResource("2_spcu4")
+theme_override_font_sizes/font_size = 91
+text = "00:00"
+horizontal_alignment = 1
+
+[node name="Title" type="Label" parent="HUD/Timer" unique_id=1246980110]
+layout_mode = 2
+theme = ExtResource("2_spcu4")
+text = "Timer"
+horizontal_alignment = 1
+
+[node name="Logs" type="VBoxContainer" parent="HUD" unique_id=1790944682]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="template" type="Label" parent="HUD/Logs" unique_id=85835424]
+visible = false
+layout_mode = 2
+theme = ExtResource("2_spcu4")
+theme_override_font_sizes/font_size = 35
+text = "Bonus time! (30.0s)"
+horizontal_alignment = 1
+
+[node name="Menu" type="Control" parent="." unique_id=237440805]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_p1exe")
+
+[node name="bg" type="ColorRect" parent="Menu" unique_id=282111906]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Buttons" type="VBoxContainer" parent="Menu" unique_id=1639253820]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_right = 300.0
+grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Start" type="Button" parent="Menu/Buttons" unique_id=1659116572]
+layout_mode = 2
+theme = SubResource("Theme_8ao2q")
+text = "Start"
+icon = ExtResource("3_eoaax")
+alignment = 0
+icon_alignment = 2
+expand_icon = true
+
+[node name="Options" type="Button" parent="Menu/Buttons" unique_id=289419276]
+layout_mode = 2
+theme = SubResource("Theme_8ao2q")
+text = "Options"
+icon = ExtResource("4_p1exe")
+alignment = 0
+icon_alignment = 2
+expand_icon = true
+
+[node name="Options" type="VBoxContainer" parent="Menu" unique_id=1709641236]
+visible = false
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 306.0
+offset_top = 329.0
+offset_right = 603.0
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="BurstKey" type="Button" parent="Menu/Options" unique_id=136143293]
+visible = false
+layout_mode = 2
+theme = SubResource("Theme_8ao2q")
+toggle_mode = true
+text = "[Shift]"
+alignment = 0
+icon_alignment = 2
+expand_icon = true
+
+[node name="Instruct" type="Label" parent="Menu/Options/BurstKey" unique_id=1288824597]
+self_modulate = Color(0.05882353, 0.05882353, 0.05882353, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_spcu4")
+text = "change      "
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Name" type="Label" parent="Menu/Options/BurstKey" unique_id=836940711]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_spcu4")
+text = "BURST"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Volume" type="HSlider" parent="Menu/Options" unique_id=129201602]
+layout_mode = 2
+theme = ExtResource("2_spcu4")
+
+[node name="Label" type="Label" parent="Menu/Options/Volume" unique_id=1661353921]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_spcu4")
+text = "volume"
+horizontal_alignment = 2
+
+[node name="Title" type="Label" parent="Menu" unique_id=925615932]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_ve3w8")
+theme_override_font_sizes/font_size = 59
+text = "t i m e d ."
+horizontal_alignment = 2
+
+[node name="BestTime" type="Label" parent="Menu" unique_id=231960853]
+self_modulate = Color(1, 1, 1, 0.37254903)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 67.0
+offset_top = 28.415009
+offset_right = -67.0
+offset_bottom = 88.41501
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_ve3w8")
+theme_override_font_sizes/font_size = 31
+text = "no records"
+horizontal_alignment = 2
+
+[node name="Pause" type="Control" parent="." unique_id=350948595]
+visible = false
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_f8am5")
+
+[node name="bg" type="ColorRect" parent="Pause" unique_id=1826003573]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5176471)
+
+[node name="Buttons" type="VBoxContainer" parent="Pause" unique_id=1363942316]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_right = 300.0
+grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Resume" type="Button" parent="Pause/Buttons" unique_id=133895285]
+layout_mode = 2
+theme = SubResource("Theme_8ao2q")
+text = "Resume"
+icon = ExtResource("3_eoaax")
+alignment = 0
+icon_alignment = 2
+expand_icon = true
+
+[node name="Reset" type="Button" parent="Pause/Buttons" unique_id=1618440637]
+layout_mode = 2
+theme = SubResource("Theme_8ao2q")
+text = "Reset"
+icon = ExtResource("7_0hr0h")
+alignment = 0
+icon_alignment = 2
+expand_icon = true
+
+[node name="Exit" type="Button" parent="Pause/Buttons" unique_id=1226226284]
+layout_mode = 2
+theme = SubResource("Theme_8ao2q")
+text = "Exit"
+icon = ExtResource("8_ptury")
+alignment = 0
+icon_alignment = 2
+expand_icon = true
+
+[node name="Stats" type="VBoxContainer" parent="Pause" unique_id=1313702578]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -170.0
+grow_horizontal = 0
+grow_vertical = 2
+alignment = 1
+
+[node name="Time" type="Label" parent="Pause/Stats" unique_id=1028946474]
+self_modulate = Color(1, 1, 1, 0.37254903)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ve3w8")
+theme_override_font_sizes/font_size = 31
+text = "Current: 0.0s"
+horizontal_alignment = 2
+
+[node name="Best" type="Label" parent="Pause/Stats" unique_id=1875285744]
+self_modulate = Color(1, 1, 1, 0.37254903)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ve3w8")
+theme_override_font_sizes/font_size = 31
+text = "Best: 0.0s"
+horizontal_alignment = 2
+
+[node name="Type" type="Label" parent="Pause/Stats" unique_id=1059291993]
+self_modulate = Color(1, 1, 1, 0.37254903)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ve3w8")
+theme_override_font_sizes/font_size = 31
+text = "CLEAN"
+horizontal_alignment = 2
+
+[connection signal="toggled" from="Menu/Options/BurstKey" to="Menu" method="_on_burst_key_toggled"]

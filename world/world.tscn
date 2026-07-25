@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://b8akxlpvaodsj"]
 
-[ext_resource type="PackedScene" uid="uid://bo8k4bqljxy1n" path="res://world/hud.tscn" id="1_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://bo8k4bqljxy1n" path="res://ui/hud.tscn" id="1_1bvp3"]
 [ext_resource type="Script" uid="uid://dw5cb3un7y286" path="res://camera.gd" id="1_lquwl"]
 [ext_resource type="Script" uid="uid://ddexae8bc5fc5" path="res://world/world.gd" id="1_mmdvd"]
 [ext_resource type="PackedScene" uid="uid://b6mlhtlaf7fj5" path="res://world/player.tscn" id="2_h2yge"]
 [ext_resource type="Shader" uid="uid://dad0tgv1gi1au" path="res://world/space.gdshader" id="3_sc4t8"]
-[ext_resource type="Texture2D" uid="uid://egxhnac1s5n1" path="res://assets/quad.png" id="4_ai45w"]
+[ext_resource type="Texture2D" uid="uid://egxhnac1s5n1" path="res://assets/textures/quad.png" id="4_ai45w"]
+[ext_resource type="Texture2D" uid="uid://dsk40t5f50klq" path="res://assets/textures/reset.png" id="5_sc4t8"]
+[ext_resource type="Theme" uid="uid://dyrulnehirjw0" path="res://ui/main_theme.tres" id="6_ai45w"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jfngs"]
 shader = ExtResource("3_sc4t8")
@@ -48,21 +50,47 @@ glow_enabled = true
 size = Vector2(29.17, 35.225)
 
 [node name="World" type="Node2D" unique_id=810114619 node_paths=PackedStringArray("player")]
+texture_filter = 1
 script = ExtResource("1_mmdvd")
 player = NodePath("Player")
 
 [node name="Camera" type="Camera2D" parent="." unique_id=122045151 node_paths=PackedStringArray("target")]
+zoom = Vector2(1.5, 1.5)
 script = ExtResource("1_lquwl")
 target = NodePath("../Player")
-target_offset = Vector2(0, 25)
+target_offset = Vector2(0, 150)
 
 [node name="Sky" type="Sprite2D" parent="Camera" unique_id=1055372993]
 material = SubResource("ShaderMaterial_jfngs")
+scale = Vector2(3, 3)
 texture = ExtResource("4_ai45w")
+
+[node name="Reset" type="Sprite2D" parent="Camera" unique_id=1095536672]
+modulate = Color(1, 1, 1, 0)
+scale = Vector2(3, 3)
+texture = ExtResource("4_ai45w")
+
+[node name="Icon" type="Sprite2D" parent="Camera/Reset" unique_id=12116099]
+visible = false
+self_modulate = Color(0, 0, 0, 1)
+texture = ExtResource("5_sc4t8")
 
 [node name="HUD" parent="." unique_id=1355407068 instance=ExtResource("1_1bvp3")]
 
 [node name="Player" parent="." unique_id=772586133 instance=ExtResource("2_h2yge")]
+
+[node name="LevelName" type="Label" parent="Player" unique_id=741342950]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -65.0
+offset_right = 282.0
+grow_vertical = 0
+theme = ExtResource("6_ai45w")
+theme_override_font_sizes/font_size = 32
+text = "|movement"
+vertical_alignment = 2
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1556570371]
 environment = SubResource("Environment_jfngs")
@@ -70,3 +98,6 @@ environment = SubResource("Environment_jfngs")
 [node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=1236689101]
 visible = false
 mesh = SubResource("QuadMesh_fn3g3")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1013929327]
+color = Color(0.70796657, 0.7079665, 0.7079665, 1)

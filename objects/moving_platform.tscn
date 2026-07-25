@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://buucbb02d8g08"]
+
+[ext_resource type="Script" uid="uid://2m3h8l3ttkvn" path="res://objects/moving_platform.gd" id="1_kyp7m"]
+[ext_resource type="Texture2D" uid="uid://egxhnac1s5n1" path="res://assets/textures/quad.png" id="2_isb40"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jfngs"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_0rtgj"]
+polygon = PackedVector2Array(-640, -640, -640, 640, 640, 640, 640, -640)
+
+[node name="MovingPlatform" type="CharacterBody2D" unique_id=907961945]
+motion_mode = 1
+platform_on_leave = 2
+script = ExtResource("1_kyp7m")
+
+[node name="Platform" type="CollisionShape2D" parent="." unique_id=304630285]
+shape = SubResource("RectangleShape2D_jfngs")
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform" unique_id=1450045239]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-1.937151e-07, 1.1324883e-06)
+scale = Vector2(0.015625, 0.015625)
+texture = ExtResource("2_isb40")
+
+[node name="Occluder" type="LightOccluder2D" parent="Platform" unique_id=1531339460]
+position = Vector2(-1.937151e-07, 1.1324883e-06)
+scale = Vector2(0.015625, 0.015625)
+occluder = SubResource("OccluderPolygon2D_0rtgj")

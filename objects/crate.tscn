@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://df2tn2snudi6t"]
+
+[ext_resource type="Script" uid="uid://dguoe5b8qr2ed" path="res://objects/pushable.gd" id="1_qvndx"]
+[ext_resource type="Texture2D" uid="uid://cx1waddicw14g" path="res://world/sheet_0.png" id="1_qx60w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jfngs"]
+size = Vector2(30, 30)
+
+[node name="Crate" type="RigidBody2D" unique_id=436700573]
+texture_filter = 1
+contact_monitor = true
+max_contacts_reported = 3
+script = ExtResource("1_qvndx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1305549517]
+shape = SubResource("RectangleShape2D_jfngs")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=346201855]
+scale = Vector2(1.85, 1.85)
+texture = ExtResource("1_qx60w")
+hframes = 16
+vframes = 16
+frame = 80
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

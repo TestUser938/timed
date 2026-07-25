@@ -1,0 +1,55 @@
+[gd_resource type="Theme" format=3 uid="uid://dyrulnehirjw0"]
+
+[ext_resource type="FontFile" uid="uid://b8kqyrr3p3fdv" path="res://assets/misc/Consolas-Regular.ttf" id="1_g1fjd"]
+[ext_resource type="Texture2D" uid="uid://f5fvvhraqua1" path="res://assets/textures/slider_head.png" id="2_6tukj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eoaax"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.05882353, 0.05882353, 0.05882353, 1)
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_li3ga"]
+bg_color = Color(0.06053035, 0.06053035, 0.060530342, 1)
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p1exe"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p4yf2"]
+bg_color = Color(0.05882353, 0.05882353, 0.05882353, 1)
+expand_margin_left = 3.0
+expand_margin_top = 7.0
+expand_margin_right = 3.0
+expand_margin_bottom = 7.0
+
+[resource]
+Button/colors/font_hover_color = Color(0, 0, 0, 1)
+Button/colors/icon_hover_color = Color(0, 0, 0, 1)
+Button/font_sizes/font_size = 25
+Button/fonts/font = ExtResource("1_g1fjd")
+Button/styles/hover = SubResource("StyleBoxFlat_eoaax")
+Button/styles/normal = SubResource("StyleBoxFlat_li3ga")
+Button/styles/pressed = SubResource("StyleBoxFlat_p1exe")
+HSlider/icons/grabber = ExtResource("2_6tukj")
+HSlider/icons/grabber_highlight = ExtResource("2_6tukj")
+HSlider/styles/slider = SubResource("StyleBoxFlat_p4yf2")
+Label/fonts/font = ExtResource("1_g1fjd")

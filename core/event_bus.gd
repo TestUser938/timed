@@ -2,5 +2,9 @@ extends Node
 
 signal action(type: String)
 signal level(index: int)
+signal log_text(text: String)
+
+signal hud(element: String, value: Variant)
+
 signal save()
-signal reload()
+signal reload(clean: bool)

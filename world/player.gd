@@ -8,12 +8,16 @@ const DASH_VELOCITY = 2000.0
 var target_velocity = Vector2.ZERO
 var current_velocity = Vector2.ZERO
 
+var target_speed = 0.0
+var current_speed = 0.0
+
 var states = {
 	"is_submerged": false,
 	"is_frozen": false,
 }
 
-@onready var dir: Line2D = $Direction
+@onready var inp: Line2D = $Input
+@onready var vel: Line2D = $Velocity
 @onready var mesh: MeshInstance2D = $Mesh
 @onready var particles: Node2D = $Particles
 
@@ -24,14 +28,18 @@ func _ready() -> void:
 	spawn_location = global_position
 
 func _physics_process(delta: float) -> void:
+	if not Globals.started: return;
+	
 	raw_input = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	dir.set_point_position(1, raw_input.normalized() * 50.0)
+	inp.set_point_position(1, raw_input.normalized() * 30.0)
+	vel.set_point_position(1, current_velocity/6.0)
 	
 	if not states["is_frozen"]:
+		current_speed = clamp(lerp(current_speed, target_speed, 2.0 * delta), SPEED, 1_000_000.0)
 		
 		if not states["is_submerged"]:
 			# H MOMENTUM #
-			current_velocity.x = lerp(current_velocity.x, target_velocity.x, (5.0 if is_on_floor() else 1.0) * delta)
+			current_velocity.x = lerp(current_velocity.x, raw_input.x * current_speed, (5.0 if is_on_floor() else 1.0) * delta)
 			
 			# GRAVITY #
 			if not is_on_floor():
@@ -45,7 +53,7 @@ func _physics_process(delta: float) -> void:
 				EventBus.action.emit("jump")
 		else:
 			current_velocity = lerp(current_velocity, target_velocity, 5.0 * delta)
-			target_velocity.y = raw_input.y * SPEED
+			target_velocity.y = raw_input.y * current_speed
 		
 		
 		# squish squash @
@@ -60,9 +68,9 @@ func _physics_process(delta: float) -> void:
 
 		# H MOVE #
 		if raw_input:
-			target_velocity.x = raw_input.x * SPEED
+			target_velocity.x = raw_input.x * current_speed
 		else:
-			target_velocity.x = move_toward(target_velocity.x, 0, SPEED)
+			target_velocity.x = move_toward(target_velocity.x, 0, current_speed)
 		
 		
 		$debug.text = str(round(current_velocity.x), ", ", round(current_velocity.y))
@@ -73,17 +81,24 @@ func burst():
 	EventBus.action.emit("burst")
 	particles.get_node("Spark").emitting = true
 	
-	if raw_input.length() > 0:
-		current_velocity = raw_input * (DASH_VELOCITY if is_on_floor() and raw_input.y == 0 else DASH_VELOCITY/4.0)
-	else:
-		particles.get_node("Burst").emitting = true
-		states["is_frozen"] = true
-		await get_tree().create_timer(.25).timeout
-		states["is_frozen"] = false
+	SoundManager.play_sound("pong")
 	
+	if raw_input.length() > 0:
+		current_speed = (DASH_VELOCITY if is_on_floor() and raw_input.y == 0 else DASH_VELOCITY/4.0)
+		current_velocity = raw_input * current_speed
+	else:
+		buffer()
 
-func die():
+func buffer():
+	SoundManager.play_sound("ting")
+	particles.get_node("Burst").emitting = true
+	states["is_frozen"] = true
+	await get_tree().create_timer(.25).timeout
+	states["is_frozen"] = false
+	current_velocity = raw_input * current_speed if raw_input.length() > 0 else current_velocity
+
+func die(spawn_position: Vector2 = Vector2.ZERO):
 	particles.get_node("Burst").emitting = true
 	
-	global_position = spawn_location
+	global_position = spawn_position
 	particles.get_node("Spawn").emitting = true

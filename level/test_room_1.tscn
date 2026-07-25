@@ -1,0 +1,64 @@
+[gd_scene format=4 uid="uid://exx42ekwphqd"]
+
+[ext_resource type="Script" uid="uid://p5txa06dr5qa" path="res://level/level.gd" id="1_mc4nf"]
+[ext_resource type="TileSet" uid="uid://c5tscayrn0hfe" path="res://world/level_tiles.tres" id="2_tbcr7"]
+[ext_resource type="PackedScene" uid="uid://b04umlimmy6bs" path="res://objects/portal.tscn" id="3_dlumj"]
+[ext_resource type="PackedScene" uid="uid://buucbb02d8g08" path="res://objects/moving_platform.tscn" id="4_f010k"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_jfngs"]
+size = Vector2(5, 5)
+
+[node name="Level" type="Node2D" unique_id=851499234 node_paths=PackedStringArray("spawn_position")]
+script = ExtResource("1_mc4nf")
+spawn_position = NodePath("spawn")
+base_time = 30.0
+
+[node name="Environment" type="TileMapLayer" parent="." unique_id=1046913888]
+texture_filter = 1
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray("AADw/wkAAAAAAAAAAADx/wkAAAAAAAAAAADy/wkAAAAAAAAAAADz/wkAAAAAAAAAAAD0/wkAAAAAAAAAAAD1/wkAAAAAAAAAAAD2/wkAAAAAAAAAAAD3/wkAAAAAAAAAAAD4/wkAAAAAAAAAAAD5/wkAAAAAAAAAAAD6/wkAAAAAAAAAAAD7/wkAAAAAAAAAAAD8/wkAAAAAAAAAAAD9/wkAAAAAAAAAAAD+/wkAAAAAAAAAAAD//wkAAAAAAAAAAAAAAAkAAAAAAAAAAAABAAkAAAAAAAAAAAACAAkAAAAAAAAAAAADAAkAAAAAAAAAAAAEAAkAAAAAAAAAAAAFAAkAAAAAAAAAAAAGAAkAAAAAAAAAAAAQAAkAAAAAAAAAAAARAAkAAAAAAAAAAAASAAkAAAAAAAAAAAATAAkAAAAAAAAAAAAUAAkAAAAAAAAAAAAVAAkAAAAAAAAAAAAWAAkAAAAAAAAAAAAXAAkAAAAAAAAAAAAYAAkAAAAAAAAAAAAZAAkAAAAAAAAAAAAaAAkAAAAAAAAAAAAHAAkAAAAAAAAAAAAIAAkAAAAAAAAAAAAJAAkAAAAAAAAAAAAKAAkAAAAAAAAAAAALAAkAAAAAAAAAAAAMAAkAAAAAAAAAAAANAAkAAAAAAAAAAAAOAAkAAAAAAAAAAAAPAAkAAAAAAAAAAADo/wkAAAAAAAAAAADp/wkAAAAAAAAAAADq/wkAAAAAAAAAAADr/wkAAAAAAAAAAADs/wkAAAAAAAAAAADt/wkAAAAAAAAAAADu/wkAAAAAAAAAAADv/wkAAAAAAAAAAAA=")
+tile_set = ExtResource("2_tbcr7")
+
+[node name="Objects" type="TileMapLayer" parent="." unique_id=1263653273]
+texture_filter = 1
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray("AADo/wcAAAAAAAgAAADo/wgAAAAAAAkAAADp/wcAAAABAAgAAADp/wgAAAABAAkAAAAZAAcAAAAAAAYAAAAZAAgAAAAAAAcAAAAaAAcAAAABAAYAAAAaAAgAAAABAAcAAAA=")
+tile_set = ExtResource("2_tbcr7")
+
+[node name="spawn" type="MeshInstance2D" parent="." unique_id=2016535914]
+position = Vector2(-735, 263.00003)
+rotation = 0.7853982
+mesh = SubResource("QuadMesh_jfngs")
+
+[node name="Portal_0" parent="." unique_id=56024031 node_paths=PackedStringArray("enter_loc", "exit_loc") instance=ExtResource("3_dlumj")]
+enter_loc = NodePath("start")
+exit_loc = NodePath("end")
+
+[node name="start" type="MeshInstance2D" parent="Portal_0" unique_id=683500801]
+position = Vector2(74.26776, 80.76778)
+rotation = 0.7853982
+scale = Vector2(0.49999997, 0.49999997)
+mesh = SubResource("QuadMesh_jfngs")
+
+[node name="end" type="MeshInstance2D" parent="Portal_0" unique_id=547716419]
+position = Vector2(312.76773, 50.767765)
+rotation = 0.7853982
+scale = Vector2(0.49999997, 0.49999997)
+mesh = SubResource("QuadMesh_jfngs")
+
+[node name="MovingPlatform" parent="." unique_id=1573208384 node_paths=PackedStringArray("start_loc", "end_loc") instance=ExtResource("4_f010k")]
+size = Vector2(7, 2)
+start_loc = NodePath("start")
+end_loc = NodePath("end")
+
+[node name="start" type="MeshInstance2D" parent="MovingPlatform" unique_id=284521455]
+position = Vector2(-518.23224, 173.76776)
+rotation = 0.7853982
+scale = Vector2(0.49999994, 0.49999994)
+mesh = SubResource("QuadMesh_jfngs")
+
+[node name="end" type="MeshInstance2D" parent="MovingPlatform" unique_id=1882702579]
+position = Vector2(-279.9645, 176.53549)
+rotation = 0.7853982
+scale = Vector2(0.49999994, 0.49999994)
+mesh = SubResource("QuadMesh_jfngs")

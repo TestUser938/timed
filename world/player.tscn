@@ -1,17 +1,18 @@
 [gd_scene format=3 uid="uid://b6mlhtlaf7fj5"]
 
 [ext_resource type="Script" uid="uid://t3rqcqp1gvi2" path="res://world/player.gd" id="1_2gpuf"]
-[ext_resource type="Texture2D" uid="uid://chwr8r3v0meny" path="res://assets/ring.png" id="2_mmw4h"]
-[ext_resource type="Texture2D" uid="uid://dprvb2ymhvjd5" path="res://assets/4-pointed-star.png" id="3_4nodc"]
+[ext_resource type="Texture2D" uid="uid://chwr8r3v0meny" path="res://assets/textures/ring.png" id="2_mmw4h"]
+[ext_resource type="Texture2D" uid="uid://dprvb2ymhvjd5" path="res://assets/textures/4-pointed-star.png" id="3_4nodc"]
+[ext_resource type="Texture2D" uid="uid://cqt84bp6x8w7i" path="res://assets/textures/glow.png" id="4_4nodc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cu7rv"]
-
-[sub_resource type="QuadMesh" id="QuadMesh_2gpuf"]
-size = Vector2(20, 20)
 
 [sub_resource type="Curve" id="Curve_jfngs"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_2gpuf"]
+size = Vector2(20, 20)
 
 [sub_resource type="Curve" id="Curve_fpul8"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -30,21 +31,29 @@ _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [node name="Player" type="CharacterBody2D" unique_id=1949817328]
+texture_filter = 1
 script = ExtResource("1_2gpuf")
 
 [node name="Collider" type="CollisionShape2D" parent="." unique_id=820912556]
 shape = SubResource("RectangleShape2D_cu7rv")
 
-[node name="Mesh" type="MeshInstance2D" parent="." unique_id=1244111743]
-mesh = SubResource("QuadMesh_2gpuf")
-
-[node name="Direction" type="Line2D" parent="." unique_id=425074450]
+[node name="Velocity" type="Line2D" parent="." unique_id=425074450]
 points = PackedVector2Array(0, 0, 0, 0)
 closed = true
 width_curve = SubResource("Curve_jfngs")
 default_color = Color(0, 1, 0, 1)
 
+[node name="Input" type="Line2D" parent="." unique_id=480812510]
+points = PackedVector2Array(0, 0, 0, 0)
+closed = true
+width_curve = SubResource("Curve_jfngs")
+default_color = Color(1, 0, 0, 1)
+
+[node name="Mesh" type="MeshInstance2D" parent="." unique_id=1244111743]
+mesh = SubResource("QuadMesh_2gpuf")
+
 [node name="debug" type="Label" parent="." unique_id=493537786]
+visible = false
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -98,7 +107,6 @@ explosiveness = 1.0
 randomness = 1.0
 spread = 180.0
 gravity = Vector2(0, 0)
-orbit_velocity_max = 1.0
 scale_amount_min = 0.0
 scale_amount_max = 0.75
 scale_amount_curve = SubResource("Curve_fpul8")
@@ -114,10 +122,14 @@ explosiveness = 1.0
 randomness = 1.0
 spread = 180.0
 gravity = Vector2(0, 0)
-orbit_velocity_max = 1.0
 scale_amount_min = 0.0
 scale_amount_max = 0.5
 scale_amount_curve = SubResource("Curve_fpul8")
 split_scale = true
 scale_curve_x = SubResource("Curve_2gpuf")
 scale_curve_y = SubResource("Curve_p4qmb")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=595702495]
+shadow_enabled = true
+texture = ExtResource("4_4nodc")
+texture_scale = 2.0

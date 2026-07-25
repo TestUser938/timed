@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://b04umlimmy6bs"]
+
+[ext_resource type="Script" uid="uid://hfvbtiyo6yoe" path="res://objects/portal.gd" id="1_04sti"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jfngs"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ch4u6"]
+load_path = "res://.godot/imported/sheet_0.png-6a038a4c5b8625f44f5b4b612aab2192.ctex"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i8dkg"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tnatx"]
+load_path = "res://.godot/imported/sheet_0.png-6a038a4c5b8625f44f5b4b612aab2192.ctex"
+
+[sub_resource type="Curve" id="Curve_jfngs"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Portal" type="Area2D" unique_id=56024031]
+texture_filter = 1
+scale = Vector2(2, 2)
+script = ExtResource("1_04sti")
+
+[node name="Enter" type="CollisionShape2D" parent="." unique_id=880914585]
+shape = SubResource("RectangleShape2D_jfngs")
+
+[node name="Texture" type="Sprite2D" parent="Enter" unique_id=602524584]
+texture = SubResource("CompressedTexture2D_ch4u6")
+hframes = 16
+vframes = 16
+frame = 98
+
+[node name="Exit" type="CollisionShape2D" parent="." unique_id=377870495]
+shape = SubResource("RectangleShape2D_i8dkg")
+
+[node name="Texture" type="Sprite2D" parent="Exit" unique_id=1352575861]
+texture = SubResource("CompressedTexture2D_tnatx")
+hframes = 16
+vframes = 16
+frame = 99
+
+[node name="Line" type="Line2D" parent="." unique_id=785543776]
+points = PackedVector2Array(0, 0, 0, 0)
+width = 5.0
+width_curve = SubResource("Curve_jfngs")
+default_color = Color(1, 1, 1, 0.21568628)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
