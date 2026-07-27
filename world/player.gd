@@ -16,14 +16,22 @@ var states = {
 	"is_frozen": false,
 }
 
+# feedback #
 @onready var inp: Line2D = $Input
 @onready var vel: Line2D = $Velocity
+
+# visuals #
 @onready var mesh: MeshInstance2D = $Mesh
 @onready var particles: Node2D = $Particles
+
+@onready var ray: RayCast2D = $Ray
 
 var iframes = 0.0
 var raw_input = Vector2.ZERO
 var spawn_location
+
+var additive_dir = Vector2.ZERO
+var current_dir = Vector2.ZERO
 
 func _ready() -> void:
 	spawn_location = global_position
@@ -40,15 +48,21 @@ func _physics_process(delta: float) -> void:
 	if not states["is_frozen"]:
 		current_speed = clamp(lerp(current_speed, target_speed, 2.0 * delta), SPEED, 1_000_000.0)
 		
+		additive_dir = ray.get_collision_normal() if ray.is_colliding() else Vector2.ZERO
+		current_dir = raw_input - additive_dir * raw_input.dot(additive_dir) # if additive_dir != Vector2(0.0, -1.0) else raw_input # raw_input + Vector2(-additive_dir.y, additive_dir.x)
+		
+#		if ray.is_colliding():
+#			print(str(additive_dir))
+			
 		if not states["is_submerged"]:
 			# H MOMENTUM #
-			current_velocity.x = lerp(current_velocity.x, raw_input.x * current_speed, (5.0 if is_on_floor() else 1.0) * delta)
+			current_velocity.x = lerp(current_velocity.x, current_dir.x * current_speed, (5.0 if is_on_floor() else 1.0) * delta)
 			
 			# GRAVITY #
 			if not is_on_floor():
 				current_velocity.y += get_gravity().y * delta
 			else:
-				current_velocity.y = 0
+				current_velocity.y = current_dir.y * current_speed # lerp(current_velocity.y, current_dir.y * current_speed, 5.0 * delta)
 				
 			# JUMPING #
 			if Input.is_action_pressed("ui_accept") and is_on_floor():
@@ -71,7 +85,7 @@ func _physics_process(delta: float) -> void:
 
 		# H MOVE #
 		if raw_input:
-			target_velocity.x = raw_input.x * current_speed
+			target_velocity.x = current_dir.x * current_speed
 		else:
 			target_velocity.x = move_toward(target_velocity.x, 0, current_speed)
 		
@@ -80,8 +94,10 @@ func _physics_process(delta: float) -> void:
 		velocity = current_velocity
 		move_and_slide()
 
-func burst():
-	EventBus.action.emit("burst")
+func burst(_free = false):
+	if not _free:
+		EventBus.action.emit("burst")
+		
 	particles.get_node("Spark").emitting = true
 	
 	SoundManager.play_sound("pong")

@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://dy205681lijow" path="res://ui/pause.gd" id="6_f8am5"]
 [ext_resource type="Texture2D" uid="uid://dsk40t5f50klq" path="res://assets/textures/reset.png" id="7_0hr0h"]
 [ext_resource type="Texture2D" uid="uid://crt8tcpohq8nu" path="res://assets/textures/exit.png" id="8_ptury"]
+[ext_resource type="Texture2D" uid="uid://b7wey546mxgx" path="res://assets/textures/disabled.png" id="10_m0eg6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eoaax"]
 bg_color = Color(1, 1, 1, 1)
@@ -315,11 +316,20 @@ alignment = 0
 icon_alignment = 2
 expand_icon = true
 
-[node name="Reset" type="Button" parent="Pause/Buttons" unique_id=1618440637 groups=["button"]]
+[node name="Reload" type="Button" parent="Pause/Buttons" unique_id=1618440637 groups=["button"]]
 layout_mode = 2
 theme = SubResource("Theme_8ao2q")
-text = "Reset"
+text = "Reload"
 icon = ExtResource("7_0hr0h")
+alignment = 0
+icon_alignment = 2
+expand_icon = true
+
+[node name="Restart" type="Button" parent="Pause/Buttons" unique_id=973792630 groups=["button"]]
+layout_mode = 2
+theme = SubResource("Theme_8ao2q")
+text = "Restart"
+icon = ExtResource("10_m0eg6")
 alignment = 0
 icon_alignment = 2
 expand_icon = true

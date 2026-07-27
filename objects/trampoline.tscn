@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://bsred2tgl18ah"]
+
+[ext_resource type="Script" uid="uid://b77xdvvo6kca3" path="res://objects/trampoline.gd" id="1_dqeiu"]
+[ext_resource type="Texture2D" uid="uid://egxhnac1s5n1" path="res://assets/textures/quad.png" id="2_ihf0f"]
+[ext_resource type="Texture2D" uid="uid://cqt84bp6x8w7i" path="res://assets/textures/light_circle.png" id="3_ihf0f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jfngs"]
+
+[sub_resource type="Curve" id="Curve_fpul8"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_jfngs"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="Trampoline" type="Area2D" unique_id=237168141]
+modulate = Color(0, 1, 1, 1)
+script = ExtResource("1_dqeiu")
+
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=333998319]
+shape = SubResource("RectangleShape2D_jfngs")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=207759165]
+position = Vector2(-1.937151e-07, 1.1324883e-06)
+rotation = 0.7853982
+scale = Vector2(0.015625, 0.015625)
+texture = ExtResource("2_ihf0f")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Sprite2D" unique_id=1502056423]
+amount = 2
+gravity = Vector2(0, 0)
+angle_min = 45.0
+angle_max = 45.0
+scale_amount_min = 50.0
+scale_amount_max = 65.52
+scale_amount_curve = SubResource("Curve_fpul8")
+color_ramp = SubResource("Gradient_jfngs")
+
+[node name="Glow" type="PointLight2D" parent="." unique_id=942068633]
+texture = ExtResource("3_ihf0f")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

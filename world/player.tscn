@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dprvb2ymhvjd5" path="res://assets/textures/4-pointed-star.png" id="3_4nodc"]
 [ext_resource type="Texture2D" uid="uid://cqt84bp6x8w7i" path="res://assets/textures/light_circle.png" id="4_4nodc"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cu7rv"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_4nodc"]
 
 [sub_resource type="Curve" id="Curve_jfngs"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -34,8 +34,12 @@ point_count = 2
 texture_filter = 1
 script = ExtResource("1_2gpuf")
 
+[node name="Ray" type="RayCast2D" parent="." unique_id=1036776131]
+target_position = Vector2(0, 25)
+collide_with_areas = true
+
 [node name="Collider" type="CollisionShape2D" parent="." unique_id=820912556]
-shape = SubResource("RectangleShape2D_cu7rv")
+shape = SubResource("CircleShape2D_4nodc")
 
 [node name="Velocity" type="Line2D" parent="." unique_id=425074450]
 points = PackedVector2Array(0, 0, 0, 0)

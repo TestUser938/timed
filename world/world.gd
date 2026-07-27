@@ -16,7 +16,11 @@ var levels = [
 	preload("res://level/level_5.tscn"),
 	preload("res://level/level_6.tscn"),
 	preload("res://level/level_7.tscn"),
-	preload("res://level/level_13.tscn"),
+	preload("res://level/level_8.tscn"),
+	preload("res://level/level_9.tscn"),
+	preload("res://level/level_10.tscn"),
+	preload("res://level/level_11.tscn"),
+	preload("res://level/level_12.tscn"),
 ]
 
 var current_data = {
@@ -48,6 +52,14 @@ var save_data = {
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("reload"):
 		reload()
+
+"""
+	if Input.is_key_pressed(KEY_Q):
+		load_level((level_index - 1) % levels.size())
+		
+	if Input.is_key_pressed(KEY_E):
+		load_level((level_index + 1) % levels.size())
+"""
 
 func _ready() -> void:
 	load_level(0)
@@ -171,14 +183,14 @@ func _process(_delta: float) -> void:
 func enter_level(index: int):
 	if index >= levels.size(): 
 		var current_best = Datastore.load_time()
-		if Globals.current_time <= current_best:
+		if current_best == 0.0 or Globals.current_time <= current_best:
 			Datastore.save_time(Globals.current_time)
 		
 		Globals.current_time = 0.0
 		EventBus.open_menu.emit("menu")
 	
 	index = (index) % levels.size()
-	print(str(index))
+#	print(str(index))
 	level_buffer = true
 	load_level(index)
 	await get_tree().create_timer(.1).timeout

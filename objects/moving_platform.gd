@@ -1,6 +1,7 @@
 extends PhysicsBody2D
 
 @export var size: Vector2
+@export var speed = 1.0
 
 @export var start_loc: Node2D
 @export var end_loc: Node2D
@@ -19,7 +20,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if not Globals.started: return;
 	
-	timer += delta
+	timer += delta * speed
 	
 	var target = lerp(start_pos, end_pos, sin(timer))
 	

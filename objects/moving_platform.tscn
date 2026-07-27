@@ -10,7 +10,7 @@ polygon = PackedVector2Array(-640, -640, -640, 640, 640, 640, 640, -640)
 
 [node name="MovingPlatform" type="CharacterBody2D" unique_id=907961945]
 motion_mode = 1
-platform_on_leave = 2
+wall_min_slide_angle = 3.1415927
 script = ExtResource("1_kyp7m")
 
 [node name="Platform" type="CollisionShape2D" parent="." unique_id=304630285]

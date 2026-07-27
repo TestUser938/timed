@@ -21,4 +21,5 @@ func _input(event: InputEvent) -> void:
 func _process(delta: float) -> void:
 	if not ok: return;
 	
-	position = lerp(position, Vector2(target.global_position.x, clamp(target.global_position.y, -1000, 0)) + target_offset, 5.0 * delta)
+	var y = clamp(target.global_position.y, -1000, 0)
+	position = lerp(position, Vector2(target.global_position.x, y if y >= 0 else target.global_position.y - target_offset.y) + target_offset, 5.0 * delta)
